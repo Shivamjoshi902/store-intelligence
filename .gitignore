@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+
+videos/
+data/
+
+.env
+
+yolov8*.pt
+
+*.db
+
+.idea/
+.vscode/
