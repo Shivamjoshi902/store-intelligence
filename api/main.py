@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from database.db import get_events
-from analytics.analytics import get_occupancy
 from analytics.analytics import (
     get_total_entries,
     get_total_exits,
@@ -60,4 +59,11 @@ def analytics():
         "occupancy": get_occupancy(),
 
         "footfall": get_footfall()
+    }
+
+@app.get("/health")
+def health():
+
+    return {
+        "status": "healthy"
     }
