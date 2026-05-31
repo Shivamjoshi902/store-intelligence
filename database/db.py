@@ -23,3 +23,54 @@ def initialize_database():
     conn.close()
 
     print("Database initialized successfully.")
+
+def save_event(event):
+
+    conn = get_connection()
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO events
+        (
+            person_id,
+            event_type,
+            timestamp
+        )
+        VALUES (?, ?, ?)
+        """,
+        (
+            event["person_id"],
+            event["event_type"],
+            event["timestamp"]
+        )
+    )
+
+    conn.commit()
+
+    conn.close()
+
+
+def get_events():
+
+    conn = get_connection()
+
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        SELECT
+            id,
+            person_id,
+            event_type,
+            timestamp
+        FROM events
+        """
+    )
+
+    rows = cursor.fetchall()
+
+    conn.close()
+
+    return rows

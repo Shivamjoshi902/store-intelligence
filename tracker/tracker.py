@@ -2,6 +2,12 @@ from ultralytics import YOLO
 import cv2
 from config.config_loader import load_config
 from events.event_processor import create_event
+from database.db import (
+    initialize_database,
+    save_event
+)
+
+initialize_database()
 
 model = YOLO("yolov8n.pt")
 
@@ -82,6 +88,8 @@ while cap.isOpened():
 
                 events.append(event)
 
+                save_event(event)
+
                 print(event)
             
             if (
@@ -102,6 +110,8 @@ while cap.isOpened():
                 )
 
                 events.append(event)
+
+                save_event(event)
 
                 print(event)
 
