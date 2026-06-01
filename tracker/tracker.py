@@ -59,7 +59,6 @@ while cap.isOpened():
 
             x1, y1, x2, y2 = box
 
-            center_x = int((x1 + x2) / 2)
             center_y = int((y1 + y2) / 2)
 
             previous_y = previous_positions.get(
@@ -90,8 +89,6 @@ while cap.isOpened():
 
                 save_event(event)
 
-                print(event)
-            
             if (
                 previous_y > ENTRY_LINE_Y
                 and center_y <= ENTRY_LINE_Y
@@ -112,70 +109,6 @@ while cap.isOpened():
                 events.append(event)
 
                 save_event(event)
-
-                print(event)
-
-            cv2.circle(
-                annotated_frame,
-                (center_x, center_y),
-                5,
-                (0, 0, 255),
-                -1
-            )
-
-            cv2.putText(
-                annotated_frame,
-                f"PrevY:{previous_y}",
-                (center_x + 10, center_y + 20),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (255, 0, 0),
-                1
-            )
-
-            cv2.putText(
-                annotated_frame,
-                f"Center: ({center_x},{center_y})",
-                (center_x + 10, center_y),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (0, 0, 255),
-                1
-            )
-
-            cv2.putText(
-                annotated_frame,
-                f"Exits: {exit_count}",
-                (20, 90),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 0, 255),
-                2
-            )
-
-            cv2.putText(
-                annotated_frame,
-                f"Occupancy: {occupancy}",
-                (20, 130),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (255, 255, 0),
-                2
-            )
-
-            cv2.putText(
-                annotated_frame,
-                f"Events: {len(events)}",
-                (20, 170),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (255, 255, 255),
-                2
-            )
-
-            # print(
-            #     f"ID {track_id} -> Center ({center_x}, {center_y})"
-            # )
 
     cv2.line(
         annotated_frame,
@@ -205,17 +138,42 @@ while cap.isOpened():
         2
     )
 
+    cv2.putText(
+        annotated_frame,
+        f"Exits: {exit_count}",
+        (20, 90),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (0, 0, 255),
+        2
+    )
+
+    cv2.putText(
+        annotated_frame,
+        f"Occupancy: {occupancy}",
+        (20, 130),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 0),
+        2
+    )
+
+    cv2.putText(
+        annotated_frame,
+        f"Events: {len(events)}",
+        (20, 170),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (255, 255, 255),
+        2
+    )
+
     cv2.imshow("Store Tracking", annotated_frame)
 
     key = cv2.waitKey(1)
 
     if key == ord("q"):
         break
-
-print("\nEVENT SUMMARY\n")
-
-for event in events:
-    print(event)
 
 cap.release()
 cv2.destroyAllWindows()
