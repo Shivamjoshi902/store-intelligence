@@ -8,7 +8,6 @@ data/
 
 yolov8*.pt
 
-*.db
 
 .idea/
 .vscode/

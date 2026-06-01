@@ -2,7 +2,7 @@ import sqlite3
 
 from database.models import EVENTS_TABLE
 
-DB_NAME = "store.db"
+DB_NAME = "demo_store.db"
 
 
 def get_connection():
