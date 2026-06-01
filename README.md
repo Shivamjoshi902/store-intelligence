@@ -254,6 +254,16 @@ http://localhost:8501
 
 ---
 
+
+## Demo Data
+
+The deployed dashboard uses a small sample SQLite database to demonstrate analytics functionality.
+
+Users can generate fresh analytics by running the tracker locally on their own CCTV footage.
+
+_ _ _
+
+
 ## Future Enhancements
 
 * Live CCTV stream support
