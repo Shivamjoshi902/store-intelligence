@@ -217,6 +217,12 @@ pip install -r requirements.txt
 ```bash
 python -m tracker.tracker
 ```
+Place CCTV video files in videos folder before running the tracker.
+
+Example:
+videos/store_sample.mp4
+
+Video files are excluded from the repository as per challenge guidelines.
 
 ---
 

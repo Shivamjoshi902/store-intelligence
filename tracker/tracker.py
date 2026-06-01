@@ -97,7 +97,7 @@ while cap.isOpened():
 
                 exit_count += 1
 
-                occupancy -= 1
+                occupancy = max(0, occupancy - 1)
 
                 exited_ids.add(track_id)
 
